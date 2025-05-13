@@ -1,0 +1,8 @@
+ListaJogos = []
+
+    for i in range (1,3):
+
+    jogador = input('Digite o nome do player: ')
+    jogo = input('Digite o nome do jogo: ')
+    player = {"jogador" : jogador, "jogo" : jogo}
+
