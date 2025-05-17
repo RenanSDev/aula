@@ -1,0 +1,33 @@
+listajogo = []
+seguir = 1
+
+while seguir == 1:
+    player = input("Digite o nome do jogador: ")
+    jogo = input("Digite o jogo de interesse: ")
+    tempo = input("Digite a quantos anos joga: ")
+
+    aluno = {"nome": player, "tema": jogo, "grau": tempo}
+    listajogo.append(aluno)
+
+    seguir = int(input("Digite 1 para seguir ou 0 para sair: "))
+
+print("\nLista de jogadores cadastrados:")
+for i in range(0, len(listajogo)):
+    print(f"{listajogo[i]['nome']} : {listajogo[i]['tema']} : {listajogo[i]['grau']}")
+
+remover = input("\nDeseja remover algum jogador da lista? (s/n): ").lower()
+if remover == "s":
+    nome_remover = input("Digite o nome do jogador a ser removido: ")
+    encontrado = False
+    for aluno in listajogo:
+        if aluno["nome"] == nome_remover:
+            listajogo.remove(aluno)
+            print(f"{nome_remover} foi removido da lista.")
+            encontrado = True
+            break
+    if not encontrado:
+        print("Jogador não encontrado.")
+
+print("\nLista final de jogadores:")
+for i in range(0, len(listajogo)):
+    print(f"{listajogo[i]['nome']} : {listajogo[i]['tema']} : {listajogo[i]['grau']}")
