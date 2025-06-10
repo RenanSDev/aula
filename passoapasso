@@ -1,0 +1,68 @@
+import tkinter as tk
+from tkinter import messagebox
+
+# Função que executa a lógica de cálculo
+def calcular():
+    global maior, menor, soma, cont
+    try:
+        num = float(entry_num.get())
+        
+        if cont == 0:  # Para colocar o primeiro valor como maior e menor
+            maior = num
+            menor = num
+        
+        if num > maior:
+            maior = num
+        if num < menor:
+            menor = num
+
+        soma += num
+        cont += 1
+        
+        # Atualizar rótulos com os resultados
+        lbl_maior.config(text=f"Maior número: {maior}")
+        lbl_menor.config(text=f"Menor número: {menor}")
+        lbl_media.config(text=f"Média: {(soma / cont):.2f}")
+        
+        # Limpar o campo de entrada
+        entry_num.delete(0, tk.END)
+        
+    except ValueError:
+        messagebox.showerror("Erro", "Digite um número válido.")
+
+# Função para sair e mostrar o resultado final
+def sair():
+    messagebox.showinfo("Resultado Final", f"Maior número: {maior}\nMenor número: {menor}\nMédia: {(soma / cont):.2f}")
+    root.quit()
+
+# Criando a janela principal
+root = tk.Tk()
+root.title("Calculadora de Números")
+
+# Variáveis para controle
+maior = menor = soma = cont = 0
+
+# Criando widgets
+lbl_instrucao = tk.Label(root, text="Digite um número:")
+lbl_instrucao.pack(pady=10)
+
+entry_num = tk.Entry(root)
+entry_num.pack(pady=5)
+
+btn_calcular = tk.Button(root, text="Adicionar número", command=calcular)
+btn_calcular.pack(pady=10)
+
+lbl_maior = tk.Label(root, text="Maior número: --")
+lbl_maior.pack(pady=5)
+
+lbl_menor = tk.Label(root, text="Menor número: --")
+lbl_menor.pack(pady=5)
+
+lbl_media = tk.Label(root, text="Média: --")
+lbl_media.pack(pady=5)
+
+btn_sair = tk.Button(root, text="Sair", command=sair)
+btn_sair.pack(pady=20)
+
+# Rodar o loop da interface gráfica
+root.mainloop()
